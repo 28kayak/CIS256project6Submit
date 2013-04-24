@@ -9,7 +9,7 @@ class Heap<E extends Comparable <E>>
 	  {
 	  	elements = new Patient[maxSize + 1];
 	  	lastIndex = 0;
-	 	maxIndex = maxSize + 1;
+	 	maxIndex = maxSize;
 	  	elements[0] = new Patient("","", -1);
 	  }//Heap
 	  public boolean isEmpty()

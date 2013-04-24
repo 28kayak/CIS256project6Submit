@@ -11,7 +11,7 @@ public class AppHeap
 		String patientName = "";
 		String malady = "";
 		int priority = 0;
-
+		Patient patient;
 
 		System.out.println("Enter the number of patients on waiting list for operating room 1");
 		rooms = scanInt.nextInt();
@@ -20,7 +20,7 @@ public class AppHeap
 		rooms = scanInt.nextInt();
 		Heap room2 = new Heap(rooms);
 
-		while(!room1.isFull() && !room2.isFull())
+		while(!room1.isFull() || !room2.isFull())
 		{
 			System.out.println("Enter patient name");
 			patientName = scanString.nextLine();
@@ -29,7 +29,7 @@ public class AppHeap
 			System.out.println("Enter priority of the patient");
 			priority = scanInt.nextInt();
 
-			Patient patient = new Patient(patientName, malady, priority);
+			patient = new Patient(patientName, malady, priority);
 
 
 			if(!room1.isFull())
@@ -37,16 +37,25 @@ public class AppHeap
 				room1.add(patient);
 				System.out.println("added room1");
 			}
-			else 
+			else if(!room2.isFull())
 			{
 				room2.add(patient);
 				System.out.println("added room2");
 			}
+			else
+			{
+				System.out.println("Both operating rooms are full now");
+			}
 			
 		}//while
+		Patient room1_patient;
+		Patient room2_patient;
+		
 		System.out.println("-- schedule for operating room 1 --");
-		room1.remove();
+		room1_patient = room1.remove();
+		System.out.println(room1_patient.toString());
 		System.out.println("-- schedule for operating room 2 --");
-		room2.remove();
+		room2_patient = room2.remove();
+		System.out.println(room2_patient.toString());
 	}
 }
